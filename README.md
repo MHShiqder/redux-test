@@ -1,12 +1,37 @@
-# React + Vite
+1.install redux-toolkit & redux;
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2.create store.js in app folder or anywhere;
 
-Currently, two official plugins are available:
+3.import configureStore from redux-toolkit & 
+  export const store= configureStore({})
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+4. create todoSlice in a feature/todo folder
 
-## Expanding the ESLint configuration
+5.import { createSlice,nanoid } from "@reduxjs/toolkit";
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+6. then create a slice with a variable name and inside it pass an object with properties: name ,initialState, reducer.
+
+7. inside reducer add functions like :
+         addTodo:(state,action)=>{
+            const todo={
+                id:nanoid(),
+                text:action.payload
+            }
+            state.todos.push(todo)
+        }
+
+8. then export the functions 
+
+9. also export the reducer   (export default todoSlice.reducer)
+
+10. to use any reducer functions use useDispatch.
+    const dispatch=useDispatch()
+    dispatch(addTodo(input))
+
+11. to access the store data use useSelector:
+    const todos= useSelector(state=>state.todos)
+
+12. wrap the app with a provider and pass the store as props named store:
+    <Provider store={store}>
+      <App />
+    </Provider>
