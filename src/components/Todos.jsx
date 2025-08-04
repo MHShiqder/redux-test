@@ -15,7 +15,7 @@ export default function Todos() {
                 key={todo.id}
                 className="flex justify-between items-center bg-gray-800 text-white px-4 py-3 rounded-lg shadow"
               >
-                <span className="truncate">{todo.text}</span>
+                <span className="truncate">{todo.order}. {todo.text}</span>
                 <button
                   onClick={() => dispatch(removeTodo(todo.id))}
                   className="text-red-400 hover:text-red-600 font-bold transition"
